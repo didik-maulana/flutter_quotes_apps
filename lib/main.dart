@@ -37,17 +37,6 @@ class _QuotesPageState extends State<QuotesPage> {
     
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
-
-    Widget _titleSection = Center(
-      child: Text(
-        'Quotes Apps',
-        style: TextStyle(
-          color: Colors.white,
-          fontWeight: FontWeight.w300,
-          fontSize: 20.0,
-        ),
-      ),
-    );
     
     return Scaffold(
       body: Container(
@@ -64,7 +53,16 @@ class _QuotesPageState extends State<QuotesPage> {
         ),
         child: Column(
           children: [
-            _titleSection,
+            Center(
+              child: Text(
+                'Quotes Apps',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.w300,
+                  fontSize: 20.0,
+                ),
+              ),
+            ),
             Padding(
               padding: EdgeInsets.only(
                 top: height/12,
