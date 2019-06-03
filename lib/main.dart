@@ -9,17 +9,8 @@ void main() {
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
     title: "Quotes Apps",
-    home: MyApp(),
+    home: QuotesPage(),
   ));
-}
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-
-    );
-  }
 }
 
 class QuotesPage extends StatefulWidget {
@@ -43,8 +34,71 @@ class _QuotesPageState extends State<QuotesPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    
+    final width = MediaQuery.of(context).size.width;
+    final height = MediaQuery.of(context).size.height;
 
+    Widget _buildRefetchButton = InkWell(
+      onTap: () {},
+      child: Container(
+        width: width,
+        margin: EdgeInsets.symmetric(
+          horizontal: width/10,
+        ),
+        padding: EdgeInsets.symmetric(
+          vertical: height/50,
+        ), 
+        child: Center(
+          child: Text(
+            'REFETCH QUOTES',
+            style: TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+        decoration: BoxDecoration(
+          border: Border.all(
+            width: 2.0,
+            color: Colors.white,
+          ),
+          borderRadius: BorderRadius.circular(20.0),
+        ),
+      ),
+    );
+    
+    return Scaffold(
+      body: Container(
+        padding: EdgeInsets.only(
+          bottom: height/20,
+        ),
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topRight,
+            end: Alignment.bottomLeft,
+            colors: [const Color(0xff368882), const Color(0xff31597d)],
+          ),
+        ),
+        child: Column(
+          children: [
+            Expanded(
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: 5,
+                itemBuilder: (context, index) {
+                  return Container(
+                    margin: EdgeInsets.only(right: 50.0),
+                    width: 50.0,
+                    height: height/5,
+                    color: Colors.blue,
+                  );
+                },
+              ),
+            ),
+            _buildRefetchButton,
+          ],
+        ),
+      ),
     );
   }
 }
