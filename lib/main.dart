@@ -22,7 +22,11 @@ List<Quotes> parseQuotes(String responseBody) {
 Future<List<Quotes>> fetchQuotes(http.Client client) async {
   final urlApi = "http://quotesondesign.com/wp-json/posts?filter[orderby]=rand&filter[posts_per_page]=10";
   final response = await client.get(urlApi);
-  return compute(parseQuotes, response.body);
+  if (response.statusCode == 200) {
+    return compute(parseQuotes, response.body);
+  } else {
+    throw Exception('Failed to load quotes');
+  }
 }
 
 class QuotesPage extends StatefulWidget {
